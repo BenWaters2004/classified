@@ -1,0 +1,1146 @@
+/*
+Styling used on the majority of page
+
+Resets browsers default styling
+ http://meyerweb.com/eric/tools/css/reset/ 
+    v2.0 | 20110126
+    License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*Sets variables*/
+:root {
+    --main: #2C3C64;
+    --accent: #C55359;
+    --text: #828282;
+    --background: #f8f8f8;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/*The margins on either side of the page*/
+.margins {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#noMargins {
+    margin-left: -100px;
+    margin-right: -100px;
+    padding: 100px 100px;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+/*---------------------Banner Designs-------------------------*/
+
+/*Banner design 1*/
+.OvalBanner {
+    position: relative;
+    background-color: var(--main);
+    width: 100%;
+    height: 70vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    margin-top: 190px;
+    overflow: hidden;
+}
+.OvalBanner img {
+    height: 100%;
+    width: auto;
+    float: right;
+}
+.OvalBanner h1 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 43px;
+    margin-top: 50px;
+    line-height: 48px;
+    color: white;
+    padding-bottom: 6px;
+    border-bottom: 8px solid var(--accent);
+}
+.OvalBanner h1 span {
+    color: var(--accent);
+}
+.OvalBanner h2 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 37px;
+    margin-top: 170px;
+    line-height: 40px;
+    color: #002b2a;
+}
+.OvalBanner p {
+    color: white;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    line-height: 30px;
+}
+.OvalBanner p a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+.OvalBanner p a:hover{
+    text-decoration: underline;
+}
+.OvalBannerText {
+    margin-left: 50px;
+    max-width: 450px;
+    position: absolute;
+    top: 35%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.btnSolid {
+    background-color: #C55359;
+    padding: 10px 30px 10px 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/*---------------------Button Designs-------------------------*/
+
+/*btn - transparrent background with an outline*/
+.btn-outline {
+    text-decoration: none;
+    text-align: center;
+    color: var(--main);
+    font-family: "Bliss Pro";
+    font-size: 12px;
+    letter-spacing: 2px;
+    border: 2px solid var(--main);
+    padding: 18px 34px;
+    font-weight: 900;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-outline:hover {
+    background-color: white;
+}
+
+.btn-outlineFlip {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-family: "Bliss Pro";
+    font-size: 12px;
+    letter-spacing: 2px;
+    border: 2px solid white;
+    padding: 12px 30px;
+    font-weight: 900;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+/*btn - solid background white text*/
+.btn-solid {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-family: "Bliss Pro";
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 10px 32px;
+    font-weight: 900;
+    border-radius: 60px;
+    background-color: var(--main);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-solid:hover {
+    background-color: #bf284b;
+}
+
+.Image-TextBlock a {
+    font-size: 14px;
+    padding: 20px;
+}
+
+/*---------------------Carousel Designs-------------------------*/
+.owl-prev,
+.owl-next {
+    background-color: var(--main);
+    color: white;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 40px;
+    border: 2px solid var(--main);
+}
+.owl-prev:hover,
+.owl-next:hover {
+    color: #f8f8f8;
+}
+
+/* Centering the navigation buttons horizontally */
+.owl-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.owl-carousel .owl-nav button {
+    position: absolute;
+    top: -100px;
+    bottom: 0;
+    margin: auto;
+}
+.owl-carousel .owl-nav .owl-prev {
+    left: -50px;
+}
+.owl-carousel .owl-nav .owl-next {
+    right: -50px;
+}
+
+
+.Carousel {
+    height: max-content;
+    background-color: var(--background);
+}
+.Carousel h3 {
+    text-align: center;
+    color: var(--main);
+    font-size: 18px;
+    line-height: 22px;
+    font-family: "Obvia Narrow", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    max-width: 80%;
+    margin-left: 10%;
+}
+.Carousel h2 {
+    max-width: 80%;
+    text-align: center;
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 45px;
+    margin-bottom: 40px;
+    margin-left: 10%;
+}
+.Carousel h4 {
+    text-align: center;
+    font-size: 22px;
+    line-height: 28px;
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.Carousel p {
+    text-align: center;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--text);
+}
+.Stats .blocks {
+    display: flex;
+    width: 100%;
+    height: auto;
+
+}
+.Stats .block {
+    flex: 0 0 33.33%;
+    text-align: center;
+}
+
+.owl-carousel .item img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    margin: auto;
+}
+.CaraText {
+    width: 75%;
+    margin-left: 12.5%;
+}
+.Carousel a {
+    position: relative;
+    top: 40px;
+    margin-bottom: 50px;
+    margin-inline: 25%;
+    display: block;
+}
+
+
+.Feedback {
+    margin-left: -100px;
+    margin-right: -100px;
+    padding: 100px 100px;
+    width: 100%;
+    height: auto;
+    background-color: var(--background);
+}
+.Feedback h2, .Feedback h3 {
+    text-align: center;
+    max-width: 80%;
+    margin-left: 10%;
+}
+.Feedback h3 {
+    color: var(--main);
+    line-height: 30px;
+    font-size: 20px;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 500;
+}
+.Feedback h2 {
+    color: var(--accent);
+    line-height: 38px;
+    font-size: 50px;
+    margin-bottom: 100px;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+}
+.Feedback .block {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 0 10px;
+    background-color: white;
+    border-radius: 25px;
+}
+.Feedback .blocks {
+    display: flex;
+    width: calc(100% - 40px);
+    height: 500px;
+}
+
+.Feedback .block h4 {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+}
+.Feedback .block h5 {
+    margin-left: 10%;
+    margin-right: 10%;
+    color: var(--main);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+.Feedback .block p {
+    margin-left: 10%;
+    margin-right: 10%;
+    color: var(--text);
+    font-family: "Obvia Narrow", sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+}
+.Feedback .block a {
+    margin-left: 10%;
+}
+.Feedback .blocks .block img {
+    width: 120px;
+    height: auto;
+    border: 4px solid var(--main);
+    border-radius: 50%;
+    margin-left: 10%;
+    margin-top: -50px;
+    background-color: white;
+}
+
+/*---------------------FAQ & Locations dropdowns Designs-------------------------*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    background-color: white;
+    width: 70%;
+    height: 100px;
+    left: 15%;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    box-shadow: 3px 3px 3px 3px gray;
+    transition: all 0.3s;
+}
+.dropdown h5 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 25px;
+    color: var(--accent);
+    margin-top: 41.5px;
+    margin-left: 5%;
+}
+.dropdown-toggle {
+    position: absolute;
+    background-color: none;
+    color: var(--main);
+    border: none;
+    cursor: pointer;
+    margin-top: -32.5px;
+    left: 85%;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.dropdown-toggle i {
+    vertical-align: bottom;
+    font-size: 26px;
+    line-height: 30px;
+    margin-left: 4px;
+    transition: all 0.3s;
+}
+
+.dropdownContent {
+    position: absolute;
+    width: 90%;
+    height: auto;
+    z-index: 1;
+    margin-top: 33.5px;
+    margin-left: 5%;
+    border-top: solid 1px var(--text);
+    max-height: 0;
+    overflow: hidden;
+}
+.dropdownContent p {
+    margin-top: 40px;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text);
+}
+.dropdownContent p span {
+    color: var(--main);
+}
+.Locations .dropdownContent p {
+    max-width: 40%;
+}
+.dropdownContent a {
+    color: darkslategray;
+    font-weight: 900;
+    letter-spacing: 0px;
+    text-decoration: none;
+}
+.FAQ {
+    background-color: var(--background);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 100%;
+    height: auto;
+}
+.FAQ H2 {
+    text-align: center;
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 50px;
+    padding-bottom: 50px;
+    max-width: 80%;
+    margin-left: 10%;
+}
+
+/*---------------------Text Blocks & image Designs-------------------------*/
+
+/*Title and text block*/
+.Title-TextBlock {
+    width: 100%;
+    height: auto;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 110px;
+    margin-bottom: 110px;
+}
+.Title-TextBlock h2 {
+    flex: 1;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 37px;
+    line-height: 42px;
+    color: var(--accent);
+    max-width: 35%;
+}
+.Title-TextBlock h2 span {
+    color: var(--main);
+}
+.Title-TextBlock p {
+    flex: 1;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text);
+    margin-left: 20px;
+}
+.Title-TextBlock p span {
+    color: var(--accent);
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+/*Image left and Text right block*/
+.Image-TextBlock {
+    width: 100%;
+    height: auto;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+.Image-TextBlock .text {
+    max-width: 50%;
+    max-height: auto;
+    margin-bottom: 0;
+}
+.Image-TextBlock img {
+    flex: 1;
+    display: block;
+    margin-top: 0;
+    margin-bottom: auto;
+    max-width: 50%;
+    height: auto;
+}
+.Image-TextBlock .text p {
+    flex: 1;
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text);
+}
+.Image-TextBlock .text h2 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 37px;
+    line-height: 42px;
+    color: var(--accent);
+}
+.Image-TextBlock .text h2 span {
+    color: var(--main);
+}
+#img-left {
+    padding-right: 5%;
+}
+#img-right {
+    padding-left: 5%;
+}
+
+/*---------------------Other Designs-------------------------*/
+
+/*Home Page stats counter*/
+.Stats {
+    width: 100%;
+    height: max-content;
+    margin-top: 100px;
+    text-align: center;
+}
+.Stats h2 {
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 45px;
+    margin-bottom: 40px;
+}
+.Stats h3 {
+    color: var(--main);
+    font-size: 18px;
+    line-height: 22px;
+    font-family: "Obvia Narrow", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.Stats .blocks {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 75px;
+}
+.Stats .block {
+    border-top: 8px solid lightgray;
+    border-bottom: 8px solid lightgray;
+    max-width: 20%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.Stats h4 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 900;
+    font-size: 65px;
+    color: var(--accent);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.Stats img {
+    width: 150px;
+    height: auto;
+}
+.Stats p {
+    color: var(--text);
+    font-family: "Obvia Narrow", sans-serif;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+/*BIT Group Logos*/
+.BITgroup {
+    width: 100%;
+    height: auto;
+    padding-bottom: 10%;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#packagesTable {
+    font-family: "Obvia Narrow", sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 10%;
+}
+#packagesTable td, #packagesTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#packagesTable tr:nth-child(even){background-color: #f2f2f2;}
+#packagesTable th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: var(--main);
+color: white;
+font-weight: 600;
+font-size: 18px;
+text-align: center;
+}
+#packagesTable td {
+    color: var(--text);
+    font-size: 17px;
+}
+#packagesTable td i {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    line-height: 25px;
+
+}
+.fa-check {
+    color: green;
+}
+.fa-xmark {
+    color: red;
+}
+.packageOptions h3 {
+    text-align: center;
+    color: var(--main);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 75px;
+    max-width: 80%;
+    margin-left: 10%;
+}
+.packageOptions h2 {
+    text-align: center;
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 37px;
+    line-height: 42px;
+    margin-bottom: 50px;
+    max-width: 80%;
+    margin-left: 10%;
+}
+
+.htmlSitemap {
+    margin-top: 200px;
+    margin-bottom: 100px;
+    font-family: "Obvia Narrow", sans-serif;
+}
+.htmlSitemap h1 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 45px;
+    color: var(--accent);
+    margin-bottom: 25px;
+}
+.htmlSitemap h2 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--main);
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-bottom: 1px solid lightgrey;
+}
+.htmlSitemap a {
+    text-decoration: none;
+    line-height: 25px;
+    color: var(--text);
+}
+.htmlSitemap a span {
+    color: blue;
+    text-decoration: underline;
+}
+
+.MobileTable {
+    display: none;
+}
+.MobileTable h4 {
+    color: var(--accent);
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 50px;
+    margin-left: 20px;
+}
+.MobileTable p {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--text);
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+.MobileTable h5 {
+    font-family: "Obvia Narrow", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text);
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 1px solid var(--accent);
+}
+.MobileTable a {
+    margin-left: 20px;
+    margin-top: 90px;
+    line-height: 60px;
+}
+
+
+/*Styling akward middle sizes*/
+@media (min-width: 769px) and (max-width: 1400px) {
+    .OvalBanner img {
+        margin-right: -200px;
+    }
+
+}
+
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .margins {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    #noMargins {
+        margin-left: -50px;
+        margin-right: -50px;
+        padding: 50px;
+    }
+
+    .owl-carousel .owl-nav .owl-prev {
+        left: -25px;
+    }
+    .owl-carousel .owl-nav .owl-next {
+        right: -25px;
+    }
+
+    .homeBanner h1 {
+        font-size: 38px;
+        line-height: 43px;
+    }
+    .homeBanner p {
+        line-height: 20px;
+        font-size: 16px;
+    }
+    .homeBannerText {
+        max-width: 400px;
+    }
+    .Title-TextBlock {
+        width: 90%;
+        margin-left: 5%;
+    }
+    .Stats h4 {
+        font-family: "Obvia Narrow", sans-serif;
+        font-weight: 600;
+        font-size: 45px;
+        color: var(--accent);
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .OvalBanner h1 {
+        font-size: 37px;
+        line-height: 42px;
+    }
+    .OvalBanner h2 {
+        font-family: "Obvia Narrow", sans-serif;
+        font-weight: 600;
+        font-size: 37px;
+        margin-top: 170px;
+        line-height: 40px;
+        color: #002b2a;
+    }
+    .OvalBanner p {
+        color: white;
+        font-family: "Obvia Narrow", sans-serif;
+        font-weight: 400;
+        line-height: 24px;
+        font-size: 16px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+    #packagesTable {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .Image-TextBlock .text {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    /*Feedback block - now vertical aligned rather than horizontal*/
+    .Feedback {
+        margin-left: -50px;
+        margin-right: -50px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .Feedback .block {
+        flex: 0 0 calc(100% - 20px);
+        margin: 30px;
+        margin-bottom: 70px;
+        padding-bottom: 70px;
+    }
+    .Feedback .blocks {
+        flex-wrap: wrap;
+        height: auto;
+        margin-bottom: -70px;
+    }
+    .Feedback .block h4 {
+        margin-top: 5%;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        background-color: white;
+        width: 95%;
+        height: 100px;
+        left: 2.5%;
+    }
+    .dropdown h5 {
+        font-size: 18px;
+    }
+    .dropdown-toggle {
+        margin-top: 0px;
+    }
+    .Image-TextBlock {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .BITgroup {
+        width: 86%;
+        margin-left: 7%;
+    }
+    .BITgroup img {
+        width: 185px;
+    }
+
+}
+@media only screen and (max-width: 950px) {
+    /*Remove Tramlines*/
+    .margins {
+        margin-left: 0px;
+        margin-right: 0px;
+        overflow: hidden;
+    }
+    #noMargins {
+        margin-left: 0px;
+        margin-right: 0px;
+        overflow: hidden;
+        padding: 0;
+    }
+    #packagesTable {
+        margin-bottom: 80px;
+    }
+
+    .owl-carousel .owl-nav .owl-prev {
+        left: 10px;
+    }
+    .owl-carousel .owl-nav .owl-next {
+        right: 10px;
+    }
+    .OvalBanner img {
+        margin-right: -340px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .Carousel .block {
+        width: 40%;
+        margin-left: 10%;
+    }
+    .Carousel h3{
+        margin-top: 75px;
+    }
+    .controls {
+        margin-bottom: 75px;
+    }
+}
+/*Styling changes for phone screens*/
+@media only screen and (max-width: 768px) {
+    /*Banners*/
+    .homeBanner {
+        margin-top: 90px;
+        background-image: none;
+        background-color: #f8f8f8;
+    }
+    
+    .DORAbanner h1{
+        font-size: 30px;
+        line-height: 35px;
+    }
+    .DORAbanner p{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .OvalBanner img {
+        display: none;
+    }
+    .OvalBanner {
+        margin-top: 100px;
+    }
+    .OvalBannerText {
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    /*Title Text block - now vertical aligned rather than horizontal*/
+    .Title-TextBlock {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .Title-TextBlock h2 {
+        margin-bottom: 20px;
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 50px;
+    }
+    .Title-TextBlock p {
+        margin-bottom: 20px;
+        max-width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    /*Stats block - now vertical aligned rather than horizontal*/
+    .Stats .blocks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        height: auto;
+        margin-left: 10%;
+        margin-top: 0;
+    }
+    .Stats .block {
+        border-bottom: 8px solid lightgray;
+        width: 100%;
+        max-width: 100%;
+        margin: 20px 0;
+        padding-top: 20px;
+        padding-bottom: 40px;
+        text-align: center;
+        margin-left: 0;
+        border-top: none;
+    }
+    .Stats h2 {
+        padding-bottom: 60px;
+        border-bottom: 8px solid lightgray;
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    /*Image Text block - now vertical aligned rather than horizontal*/
+    .Image-TextBlock {
+        all: revert !important;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        align-items: center;
+        margin-top: 110px;
+        margin-bottom: 110px;
+    }
+    .Image-TextBlock img,
+    .Image-TextBlock .text {
+        width: 100%;
+    }
+    .Image-TextBlock:nth-child(even) .text {
+        grid-column: 1 / span 1;
+        text-align: left;
+    }
+    .Image-TextBlock:nth-child(odd) img {
+        grid-column: 1 / span 1;
+    }
+    .Image-TextBlock .text {
+        max-width: 90%;
+        max-height: auto;
+        margin-bottom: 0;
+        margin-left: 5%;
+        margin-bottom: 5%;
+    }
+    .Image-TextBlock img {
+        max-width: 90%;
+        height: auto;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 5%;
+        padding: 0;
+    }
+    #img-left, #img-right {
+        padding: 0;
+    }
+
+    /*Feedback block - now vertical aligned rather than horizontal*/
+    .Feedback .block {
+        flex: 0 0 calc(100% - 20px);
+        margin: 30px;
+        margin-bottom: 70px;
+        padding-bottom: 50px;
+    }
+    .Feedback .blocks {
+        flex-wrap: wrap;
+        height: auto;
+        margin-bottom: -70px;
+    }
+
+    /*BIT Group - Website links*/
+    .BITgroup {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .BITgroup img {
+        width: 175px;
+        margin-bottom: 20px;
+    }
+
+    .Carousel .block {
+        width: 80%;
+        margin-left: 12.5%;
+    }
+    .CaraText {
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        background-color: white;
+        width: 95%;
+        height: 100px;
+        left: 2.5%;
+    }
+    .dropdown h5 {
+        font-size: 18px;
+    }
+    .dropdown-toggle .text {
+        display: none;
+    }
+    .dropdown-toggle {
+        margin-top: 0px;
+    }
+
+    .MobileTable {
+        display: block;
+        margin-top: -80px;
+        width: 90%;
+    }
+    #packagesTable {
+        display: none;
+    }
+    
+    .packageOptions h2 {
+        margin-bottom: 90px;
+    }
+
+    .FAQ h2 {
+        font-size: 25px;
+        line-height: 32px;
+    }
+
+    .Image-TextBlock a{
+        display: block;
+        margin-bottom: 60px;
+        margin-inline: 10%
+    }
+}

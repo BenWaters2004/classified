@@ -1,0 +1,351 @@
+@extends('layout.frontEnd')
+
+@section('title', 'Candidates | ClassifIeD')
+@section('meta_keywords', 'what is pre-employment screening?, candidate screening guide, complete DBS application, Upload identity documents, candidate help and support')
+@section('meta_description', 'Learn what the screening process looks like for you and what help we have in place to make the process as easy as possible.')
+
+
+@section('content')
+<!-- AOS Animation Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 1000, once: true });
+    });
+</script>
+
+
+<div class="container py-5">
+    <div class="row align-items-center pageBanner" data-aos="fade-up">
+        <!-- Text Section -->
+        <div class="col-lg-6 text-white textBannerSection">
+            <h1 class="display-5 fw-bold mb-4">Candidate Information</h1>
+            <p class="lead mb-4">Your guide to the screening process, everything you need to know.</p>
+        </div>
+        <!-- Image Section -->
+        <div class="col-lg-6 text-end pe-0">
+            <img rel="preload" as="image" src="{{ env('APP_URL') }}images/FrontEnd/banner-young-man.webp" alt="Man standing and smiling" class="img-fluid" loading="eager" fetchpriority="high">
+        </div>
+    </div>
+
+    <div class="Title-TextBlock">
+        <h2>We are here to make<br><span>this as easy as possible</span></h2>
+        <p>You will receive a registration email containing a link to set up your account. Simply follow the link, and you will be prompted to create your own password. Once completed, you will be directed to the candidate portal, where you can follow the on-screen instructions to complete your application and upload any relevant documents. Through the portal, you can also track the progress of your application and receive updates. Please note that we may reach out to you if additional information is required, and we are also available to help at any stage.</p>
+    </div>
+
+    <div class="row contact-section mt-5">
+        <div class="col-lg-7 col-md-12" data-aos="fade-right">
+            <!-- FAQ Section -->
+            <div class="faq-container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">What is pre-employment screening? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>Pre-employment screening is the process of verifying a candidate's background, qualifications, and work history before hiring.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">How long does the screening process take? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>The process can take anywhere from a few hours to a few weeks depending on the depth of the checks required.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What information do I need to provide? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>You may be asked to provide identification, proof of employment history, references, and qualifications.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Will I be notified when the screening is complete? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>Yes, you will receive an update once your screening process has been completed. Your dashboard will also display the current status of your application.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Why am I being asked to do this again? (if you have already) <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>If you have been recruited through an agency, it is likely they will do their own checks on you as an individual. Our BPPS screening is required by your company and is irrespective of what clearance you have done with any other organisation. Even if you have recently done a DBS or BPSS check, we will still need to complete our own. Depending on your employers policies, you may be asked to complete this again every 3-10 years.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What happens if I don't pass my clearance? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>This will come down to your employer and their own HR policies and procedures. Unfortunately, we are not in a position to answer this on their behalf. BIT Group/Get ClassifIeD will never state whether or not the employer should hire a candidate but will provide all the information for them to make their own descion.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What do I do if I need help or have questions? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>Someone from Get ClassifIeD/BIT Group is always avaliable during business hours at Tel: <a href="tel:+441752724000">+44 (0)1752 724 000</a> or Email: <a href="mailto:screening@thinkbitgroup.co.uk">screening@thinkbitgroup.co.uk</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">What does ClassifIeD do to keep my information secure? <i class="fa fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p>Your data's security is at the forefront of our application, for more infomation on our security visit <a href="{{ env('APP_URL') }}AboutUs/security-at-classified">Security at ClassifIeD</a> or our <a href="{{ env('APP_URL') }}privacypolicy.pdf">Privacy Policy</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Text Section -->
+        <div class="col-lg-5 col-md-12 contacts-info mb-4" data-aos="fade-left">
+            <div class="ContactBox">
+                <h3>Data Security</h3>
+                <p>How we protect data: <a href="{{ env('APP_URL') }}AboutUs/security-at-classified">Security at ClassifIeD</a></p>
+                <p>Our Privacy Policy: <a href="{{ env('APP_URL') }}privacypolicy.pdf">Privacy Policy</a></p>
+            </div>
+            <div class="ContactBox">
+                <h3>Candidate Support</h3>
+                <p>Call: <a href="Tel: +44 (0)1752 724 000">+44 (0)1752 724 000</a></p>
+                <p>Email: <a href="mailto:screening@thinkbitgroup.co.uk">screening@thinkbitgroup.co.uk</a></p>
+            </div>
+            <div class="ContactBox">
+                <h3>Technical Support</h3>
+                <p>Call: <a href="Tel: +44 (0)1752 270139">+44 (0)1752 270139</a></p>
+                <p>Email: <a href="mailto:ben.waters@thinkbitgroup.co.uk">ben.waters@thinkbitgroup.co.uk</a></p>
+            </div>
+            <div class="ContactBox">
+                <h3>Address</h3>
+                <p>HQ: Plymouth Science Park, 1 Davy Rd, Plymouth, Devon PL6 8BX</p>
+                <iframe width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2542.271461755169!2d-4.1085706!3d50.417413700000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486ced666312f649%3A0x51421885656f8b6c!2sGet%20ClassifIeD!5e0!3m2!1sen!2suk!4v1764270872781!5m2!1sen!2suk"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5 text-white" data-aos="fade-up">
+        <div class="overlayContact">
+            <div class="py-5">
+                <div class="d-flex flex-column flex-md-row align-items-start justify-content-between">
+                    <div class="contactText">
+                        <h2 class="fw-bold mb-3 contactUnderline">Let's get in touch</h2>
+                        <p class="mb-2">
+                            Tel: <a href="tel:+441752724000" class="text-decoration-none text-light">+44 (0)1752 724 000</a>
+                        </p>
+                        <p>
+                            Email: <a href="mailto:screening@thinkbitgroup.co.uk" class="text-decoration-none text-light">screening@thinkbitgroup.co.uk</a>
+                        </p>
+                    </div>
+                    <a href="{{ env('APP_URL') }}ContactUs" class="btn btnContact mt-6">Speak to an expert</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+@endsection
+
+@section('pageCSS')
+<style>
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+    padding: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2C3C64;
+    transition: all 0.3s ease-in-out;
+}
+
+.faq-question:hover {
+    color: #C55359;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    background: #f9f9f9;
+    padding: 0 15px;
+    border-left: 4px solid #C55359;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Adjust based on content */
+    padding: 15px;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+
+.contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.contacts-info {
+    margin-top: 60px;
+    padding-right: 20px;
+}
+
+.contacts-info h3 {
+    color: #C55359;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem !important;
+}
+.contacts-info a {
+    color: #C55359;
+    text-decoration: none;
+}
+.contacts-info p {
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem;
+}
+
+.ContactBox {
+    background-color:rgb(228, 228, 228);
+    padding: 15px;
+    margin-bottom: 20px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+}
+</style>
+@endsection
+
+@section('pageJavascript')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", function() {
+            // Close all open FAQs
+            faqItems.forEach(el => {
+                if (el !== item) {
+                    el.classList.remove("active");
+                }
+            });
+
+            // Toggle the clicked question
+            item.classList.toggle("active");
+        });
+    });
+});
+</script>
+@endsection
+
+@push('structuredData')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is pre-employment screening?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pre-employment screening is the process of verifying a candidate's background, qualifications, and work history before hiring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the screening process take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The process can take anywhere from a few hours to a few weeks depending on the depth of the checks required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What information do I need to provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You may be asked to provide identification, proof of employment history, references, and qualifications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be notified when the screening is complete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you will receive an update once your screening process has been completed. Your dashboard will also display the current status of your application."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why am I being asked to do this again? (if you have already)",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our BPPS screening is required by your company and is irrespective of what clearance you have done with any other organisation. Even if you've recently done a DBS or BPSS check, we will still need to complete our own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I don't pass my clearance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This will come down to your employer and their own HR policies and procedures. BIT Group/Get ClassifIeD will never state whether or not the employer should hire a candidate but will provide the information to make their decision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do I do if I need help or have questions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact Get ClassifIeD/BIT Group during business hours at +44 (0)1752 724 000 or screening@thinkbitgroup.co.uk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ClassifIeD do to keep my information secure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your data's security is at the forefront of our application. Visit our Security at ClassifIeD page or review our Privacy Policy to learn more."
+      }
+    }
+  ]
+}
+</script>
+@endpush

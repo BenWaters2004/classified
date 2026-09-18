@@ -1,0 +1,49 @@
+{
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "angular",
+        "releaseRules": [
+          {
+            "type": "docs",
+            "scope": "README",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "release": "patch"
+          },
+          {
+            "type": "feature",
+            "release": "patch"
+          },
+          {
+            "type": "testing",
+            "release": "patch"
+          },
+          {
+            "scope": "no-release",
+            "release": false
+          }
+        ]
+      }
+    ],
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "verifyReleaseCmd": "echo ${nextRelease.version} > VERSION.txt"
+      }
+    ],
+    "@semantic-release/gitlab"
+  ],
+  "branches": [
+    "main",
+    "+([0-9])?(.{+([0-9]),x}).x",
+    {
+      "name": "alpha",
+      "prerelease": "alpha"
+    }
+  ]
+}

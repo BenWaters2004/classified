@@ -1,0 +1,19 @@
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        navText: ["<div class='nav-button owl-prev'><i class='fa-solid fa-circle-chevron-left'></i></div>", "<div class='nav-button owl-next'><i class='fa-solid fa-circle-chevron-right'></i></div>"],
+        responsive:{
+            0:{
+                items:1
+            },
+            700:{
+                items:2
+            },
+            1200:{
+                items:3
+            }
+        }
+    });
+});

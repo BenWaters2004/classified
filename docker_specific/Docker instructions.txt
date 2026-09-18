@@ -1,0 +1,2 @@
+1: (if running through wsl) Windows may mess with the line endings of the shell scripts. to fix this, run the following on the script before you execute:
+sed $'s/\r$//' ./bin/<original script> ./bin/wsl_<original script>

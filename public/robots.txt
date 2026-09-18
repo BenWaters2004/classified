@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://classified.getclassified.co.uk/sitemap.xml
