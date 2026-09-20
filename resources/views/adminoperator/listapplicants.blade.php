@@ -1,4 +1,4 @@
-@extends('layout.adminoperator')
+@extends('layout.admin')
 
 @section('title', 'Manage Applications')
 

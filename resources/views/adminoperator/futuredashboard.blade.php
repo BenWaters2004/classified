@@ -1,4 +1,4 @@
-@extends('layout.adminoperator')
+@extends('layout.admin')
 
 @section('title', "Admin - Dashboard")
 
@@ -87,9 +87,116 @@ $userNotifications = $notifications->getHeaderNotifications()->take(10);
         </div>
 
         <!-- Row 2 -->
-        <!-- Placeholder Columns -->
-        <div class="card placeholder-card">
-            <p>Coming soon</p>
+        <div class="card purge-warning-card">
+            <div class="purge-card-header">
+                <div>
+                    <h3>
+                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        Upcoming Data Purges
+                    </h3>
+
+                    <p class="purge-card-subtitle">
+                        Candidates scheduled for deletion at the next retention purge.
+                    </p>
+                </div>
+
+                <span class="purge-count">
+                    {{ isset($purgeCandidates) ? $purgeCandidates->count() : 0 }}
+                </span>
+            </div>
+
+            @if(isset($purgeCandidates) && $purgeCandidates->count() > 0)
+
+                <div class="purge-list">
+
+                    @foreach($purgeCandidates as $candidate)
+
+                        <a
+                            href="{{ url('/finalReport/generate/' . $candidate->id) }}"
+                            class="purge-candidate"
+                            target="_blank"
+                        >
+                            <div class="purge-candidate-main">
+
+                                <div class="purge-avatar">
+                                    {{ strtoupper(substr($candidate->firstName ?? '', 0, 1)) }}
+                                    {{ strtoupper(substr($candidate->lastName ?? '', 0, 1)) }}
+                                </div>
+
+                                <div class="purge-candidate-details">
+
+                                    <strong>
+                                        {{ $candidate->firstName }}
+                                        {{ $candidate->lastName }}
+                                    </strong>
+
+                                    <span class="purge-email">
+                                        {{ $candidate->email }}
+                                    </span>
+
+                                    <span class="purge-organisation">
+                                        {{ $candidate->organisationName }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="purge-candidate-date">
+
+                                <span class="purge-date">
+                                    {{ $candidate->purgeDateFormatted }}
+                                </span>
+
+                                <small>
+                                    Retention expired
+                                    {{ $candidate->retentionExpiresFormatted }}
+                                </small>
+
+                            </div>
+
+                        </a>
+
+                    @endforeach
+
+                </div>
+
+            @else
+
+                <div class="purge-empty">
+
+                    <i
+                        class="fa fa-check-circle"
+                        aria-hidden="true"
+                    ></i>
+
+                    <strong>No upcoming data purges</strong>
+
+                    <span>
+                        No candidates are currently due for deletion
+                        at the next scheduled purge.
+                    </span>
+
+                </div>
+
+            @endif
+
+            <div class="purge-footer">
+
+                <i
+                    class="fa fa-clock-o"
+                    aria-hidden="true"
+                ></i>
+
+                Next purge:
+
+                <strong>
+                    {{ isset($nextPurgeAt)
+                        ? $nextPurgeAt->format('l d F Y \a\t H:i')
+                        : 'Not scheduled'
+                    }}
+                </strong>
+            </div>
         </div>
         <div class="card notifications-card">
             <h3>Notifications</h3>
@@ -458,6 +565,237 @@ $userNotifications = $notifications->getHeaderNotifications()->take(10);
 .view-all:hover {
     background: #C55359;
     color: #fff;
+}
+
+.purge-warning-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+}
+
+.purge-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.purge-card-header h3 {
+    margin: 0 0 5px 0;
+    color: #2C3C64;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.purge-card-header h3 i {
+    color: #C55359;
+    margin-right: 5px;
+}
+
+.purge-card-subtitle {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.purge-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;
+    height: 34px;
+
+    padding: 0 10px;
+
+    border-radius: 17px;
+
+    background: #C55359;
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.purge-list {
+    flex: 1;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+
+    margin-left: -5px;
+    margin-right: -5px;
+    padding: 0 5px;
+}
+
+.purge-candidate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 12px 0;
+
+    color: inherit;
+    text-decoration: none;
+
+    border-bottom: 1px solid #eee;
+
+    transition:
+        background-color 0.15s ease,
+        padding 0.15s ease;
+}
+
+.purge-candidate:last-child {
+    border-bottom: 0;
+}
+
+.purge-candidate:hover,
+.purge-candidate:focus {
+    background: #fafafa;
+    color: inherit;
+    text-decoration: none;
+}
+
+.purge-candidate-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.purge-avatar {
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2f2f2;
+    color: #2C3C64;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.purge-candidate-details {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.purge-candidate-details strong {
+    color: #2C3C64;
+    font-size: 14px;
+}
+
+.purge-email,
+.purge-organisation {
+    display: block;
+
+    max-width: 220px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.purge-candidate-date {
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: right;
+}
+
+.purge-date {
+    color: #C55359;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.purge-candidate-date small {
+    margin-top: 2px;
+    color: #999;
+    font-size: 11px;
+}
+
+.purge-empty {
+    flex: 1;
+
+    min-height: 130px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #888;
+}
+
+.purge-empty i {
+    margin-bottom: 8px;
+
+    color: #5cb85c;
+    font-size: 30px;
+}
+
+.purge-empty strong {
+    margin-bottom: 4px;
+
+    color: #2C3C64;
+    font-size: 14px;
+}
+
+.purge-empty span {
+    max-width: 280px;
+
+    font-size: 12px;
+}
+
+.purge-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+
+    border-top: 1px solid #eee;
+
+    color: #777;
+    font-size: 12px;
+}
+
+.purge-footer i {
+    margin-right: 4px;
+    color: #C55359;
+}
+
+@media (max-width: 767px) {
+
+    .purge-candidate {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .purge-candidate-date {
+        padding-left: 46px;
+        text-align: left;
+    }
+
 }
 
 </style>

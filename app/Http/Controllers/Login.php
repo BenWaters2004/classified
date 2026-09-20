@@ -333,16 +333,13 @@ class Login extends Controller
             $userDetails = \DB::table('users')->select('users.*')->where(["users.recoveryCode" => $resetCode])->first();
             if(!isset($userDetails) || empty($userDetails->id)){
                 return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'invalid_reset_code', 'resetCode' => $resetCode]);
-                exit;
             } 
             //check if reset code has expired
             if($userDetails->recoveryCodeExpiry < date('Y-m-d H:i:s')){
-                return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'expired_reset_code', 'resetCode' => $resetCode]);
-                exit;                
+                return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'expired_reset_code', 'resetCode' => $resetCode]);           
             }
 
             return view('user.passwordResetNew',['hideForm' => 0, 'resetCode' => $resetCode]);
-            exit;
         }
     }
 
@@ -359,12 +356,10 @@ class Login extends Controller
 
         if(!isset($userDetails) || empty($userDetails->id)){
             return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'invalid_reset_code']);
-            exit;
         } 
         //check if reset code has expired
         if($userDetails->recoveryCodeExpiry < date('Y-m-d H:i:s')){
-            return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'expired_reset_code']);
-            exit;                
+            return view('user.passwordResetNew',['hideForm' => 1, 'errorMessage' => 'expired_reset_code']);   
         }
 
         $validateArray = [

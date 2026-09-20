@@ -753,6 +753,111 @@ class Adminoperator extends Controller
         });
         
 
+        // -------------------------------------------------------------
+        // Candidates due to be purged at the next Monday 09:00 run
+        // -------------------------------------------------------------
+
+        $now = Carbon::now();
+
+        // Work out the next scheduled purge.
+        // If it is Monday and still before/equal to 09:00, today's 09:00
+        // run is considered the next purge. Otherwise use next Monday.
+        $todayPurgeTime = $now->copy()->setTime(9, 0, 0);
+
+        if ($now->isMonday() && $now->lte($todayPurgeTime)) {
+            $nextPurgeAt = $todayPurgeTime;
+        } else {
+            $nextPurgeAt = $now->copy()
+                ->next(Carbon::MONDAY)
+                ->setTime(9, 0, 0);
+        }
+
+        $purgeCandidatesQuery = \DB::table('users')
+            ->join(
+                'organisations',
+                'organisations.id',
+                '=',
+                'users.organisationID'
+            )
+            ->where('users.completed', 1)
+            ->whereNotNull('users.completedDate')
+
+            /*
+            * A candidate will be eligible for the next purge when:
+            *
+            * completedDate + organisation retention period
+            *     <= next Monday at 09:00
+            *
+            * GREATEST(..., 2) protects the minimum 2-year retention
+            * period even if an invalid value somehow exists in the DB.
+            */
+            ->whereRaw(
+                'TIMESTAMPADD(
+                    YEAR,
+                    GREATEST(
+                        COALESCE(organisations.data_retention_years, 2),
+                        2
+                    ),
+                    users.completedDate
+                ) <= ?',
+                [$nextPurgeAt->format('Y-m-d H:i:s')]
+            )
+            ->select([
+                'users.id',
+                'users.firstName',
+                'users.lastName',
+                'users.email',
+                'users.completedDate',
+                'users.organisationID',
+                'organisations.organisationName',
+                'organisations.data_retention_years',
+
+                \DB::raw(
+                    'TIMESTAMPADD(
+                        YEAR,
+                        GREATEST(
+                            COALESCE(organisations.data_retention_years, 2),
+                            2
+                        ),
+                        users.completedDate
+                    ) AS retentionExpiresAt'
+                ),
+            ]);
+
+        /*
+        * Keep exactly the same organisation-access behaviour as the
+        * rest of the dashboard.
+        */
+        if (!in_array('superuser', $currentUserRoles)) {
+            $purgeCandidatesQuery->whereIn(
+                'organisations.id',
+                $userOrganisations
+            );
+        }
+
+        $purgeCandidates = $purgeCandidatesQuery
+            ->orderBy('retentionExpiresAt', 'asc')
+            ->get()
+            ->map(function ($candidate) use ($nextPurgeAt) {
+                $candidate->retentionYears = max(
+                    2,
+                    (int) ($candidate->data_retention_years ?? 2)
+                );
+
+                $candidate->completedDateFormatted = Carbon::parse(
+                    $candidate->completedDate
+                )->format('d/m/Y');
+
+                $candidate->retentionExpiresFormatted = Carbon::parse(
+                    $candidate->retentionExpiresAt
+                )->format('d/m/Y');
+
+                $candidate->purgeDateFormatted =
+                    $nextPurgeAt->format('d/m/Y \a\t H:i');
+
+                return $candidate;
+            });
+
 
         // Pass data to the view
         return view('adminoperator.futuredashboard', [
@@ -765,7 +870,9 @@ class Adminoperator extends Controller
             'percentageChange' => round(abs($percentageChange), 2),
             'growthClass' => $growthClass,
             'growthSymbol' => $growthSymbol,
-            'averageDurations' => json_encode($averageDurations)
+            'averageDurations' => json_encode($averageDurations),
+            'purgeCandidates' => $purgeCandidates,
+            'nextPurgeAt'     => $nextPurgeAt
         ]);
     }
 

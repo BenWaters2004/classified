@@ -19,6 +19,12 @@ class Kernel extends ConsoleKernel
             ->everyFifteenMinutes()
             ->withoutOverlapping()
             ->onOneServer();
+
+        $schedule
+            ->command('candidates:purge-expired')
+            ->weeklyOn(1, '09:00')
+            ->timezone('Europe/London')
+            ->withoutOverlapping(120);
     }
 
     /**
