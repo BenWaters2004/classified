@@ -163,6 +163,35 @@ class Adminoperator extends Controller
 
         $newApplicantID = \DB::table('applicants')->insertGetId($applicantDetails);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Candidate Portal V2 - Silent Dual Write
+        |--------------------------------------------------------------------------
+        |
+        | The existing applicants record remains authoritative.
+        | Failure here must not interrupt the existing invitation flow.
+        |
+        */
+
+        try {
+
+            app(
+                \App\Services\Screening\ScreeningRequestWriterService::class
+            )->syncFromLegacyApplicant(
+                $newApplicantID
+            );
+
+        } catch (\Throwable $e) {
+
+            \Log::error(
+                'Unable to start Screening V2 dual-write.',
+                [
+                    'applicant_id' => $newApplicantID,
+                    'message' => $e->getMessage(),
+                ]
+            );
+        }
+
         if (!empty($newApplicantID) && is_numeric($newApplicantID)){
 
             // Handle dynamic uploads

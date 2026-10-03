@@ -294,6 +294,34 @@ class Applications extends Controller
 
        
         $newApplicantID = \DB::table('applicants')->insertGetId($applicantDetails);
+        /*
+        |--------------------------------------------------------------------------
+        | Candidate Portal V2 - Silent Dual Write
+        |--------------------------------------------------------------------------
+        |
+        | The existing applicants record remains authoritative.
+        | Failure here must not interrupt the existing invitation flow.
+        |
+        */
+
+        try {
+
+            app(
+                \App\Services\Screening\ScreeningRequestWriterService::class
+            )->syncFromLegacyApplicant(
+                $newApplicantID
+            );
+
+        } catch (\Throwable $e) {
+
+            \Log::error(
+                'Unable to start Screening V2 dual-write.',
+                [
+                    'applicant_id' => $newApplicantID,
+                    'message' => $e->getMessage(),
+                ]
+            );
+        }
         if (!empty($newApplicantID) && is_numeric($newApplicantID)){
             //send email
             Mail::send('email_templates.dbs_registration_request', ['targetEmail' => $requestVars['emailAddress'], 'registrationLink' =>env('APP_URL').'register/'.$accessUrlCode], function ($message) use ($emailTo) {
@@ -2184,6 +2212,24 @@ if(env("APP_ENV") == 'production'){
 
             // Insert applicant
             $newApplicantID = \DB::table('applicants')->insertGetId($details);
+            try {
+
+                app(
+                    \App\Services\Screening\ScreeningRequestWriterService::class
+                )->syncFromLegacyApplicant(
+                    $newApplicantID
+                );
+
+            } catch (\Throwable $e) {
+
+                \Log::error(
+                    'Unable to start Screening V2 bulk dual-write.',
+                    [
+                        'applicant_id' => $newApplicantID,
+                        'message' => $e->getMessage(),
+                    ]
+                );
+            }
             if (!$newApplicantID) {
                 $results['skipped'][] = $applicant;
                 continue;

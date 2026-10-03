@@ -327,6 +327,9 @@ class Admin extends Controller
             'permanent_employee_renewal_years' => 'required|integer|min:1|max:100',
             'contractor_renewal_years'         => 'required|integer|min:1|max:100',
             'data_retention_years'             => 'required|integer|min:2|max:100',
+            'screeningChecksPresent' => 'nullable|in:1',
+            'screeningChecks' => 'nullable|array',
+            'screeningChecks.*' => 'string|exists:screening_check_types,code',
         ]);
 
         $organisationID = $request->input('organisationID');
@@ -376,6 +379,40 @@ class Admin extends Controller
         // Update organisation
         if (!empty($updateData)) {
             \DB::table('organisations')->where('id', $organisationID)->update($updateData);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Candidate Portal V2 Screening Checks
+        |--------------------------------------------------------------------------
+        |
+        | screeningChecksPresent is deliberately separate from screeningChecks.
+        |
+        | If the user unchecks every option there will be no screeningChecks[]
+        | value in the request, but screeningChecksPresent will still exist.
+        |
+        | If an old page or another process posts to this controller without the
+        | V2 fields, we don't touch the V2 configuration at all.
+        |
+        */
+
+        if ($request->has('screeningChecksPresent')) {
+
+            $screeningChecks = $request->input(
+                'screeningChecks',
+                []
+            );
+
+            if (!is_array($screeningChecks)) {
+                $screeningChecks = [];
+            }
+
+            app(
+                \App\Services\Screening\OrganisationScreeningService::class
+            )->syncOrganisationChecks(
+                $organisationID,
+                $screeningChecks
+            );
         }
 
         return redirect()->back()->with('success', 'Organisation settings updated.');

@@ -242,6 +242,8 @@
                                     @endforeach
                                 </div>
                             </div>
+
+                            @include('admin.settings.partials.screeningChecksV2')
                         @endif
                         <br>
 
